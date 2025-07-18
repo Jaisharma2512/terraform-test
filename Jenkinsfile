@@ -25,9 +25,6 @@ pipeline {
         }
 
         stage('Apply') {
-            when {
-                branch 'main'
-            }
             steps {
                 sh 'terraform apply -auto-approve -var="credentials_file=$Gcloudcreds" -var-file="terraform.tfvars"'
             }
