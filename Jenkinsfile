@@ -29,7 +29,7 @@ pipeline {
                 branch 'main'
             }
             steps {
-                sh 'terraform apply -auto-approve -var="credentials_file=$Gcloudcreds"'
+                sh 'terraform apply -auto-approve -var="credentials_file=$Gcloudcreds" -var-file="terrafrom.tfvars"'
             }
         }
     }

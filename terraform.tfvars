@@ -5,12 +5,12 @@ fw = {
             allow = [
                         {
                             protocol = "tcp"
-                            ports: ["80"]
+                            ports = ["80"]
                         },
                         {
 
-                            protocol: "ssh"
-                            ports: ["22"]
+                            protocol: "tcp"
+                            ports = ["22"]
                         }
                 ]
             
