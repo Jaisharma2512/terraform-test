@@ -31,6 +31,11 @@ variable "fw" {
     }))
 }
 
+variable "credentials_file" {
+  description = "Path to GCP service account key file"
+  type        = string
+}
+
 resource "google_compute_firewall" "dynamic_fw" {
   for_each = var.fw
   name = each.key
