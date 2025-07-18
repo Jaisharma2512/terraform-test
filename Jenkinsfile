@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        Gcloudcreds = credentials('gcp-creds')  // Make sure this is a Jenkins "secret file"
+        Gcloudcreds = credentials('gcp-creds')  // Secret file credential in Jenkins
     }
 
     stages {
@@ -20,7 +20,7 @@ pipeline {
 
         stage('Plan') {
             steps {
-                sh 'terraform plan -var="credentials_file=$Gcloudcreds"'
+                sh 'terraform plan -var="credentials_file=$Gcloudcreds" -var-file="terraform.tfvars"'
             }
         }
 
@@ -29,7 +29,13 @@ pipeline {
                 branch 'main'
             }
             steps {
-                sh 'terraform apply -auto-approve -var="credentials_file=$Gcloudcreds" -var-file="terrafrom.tfvars"'
+                sh 'terraform apply -auto-approve -var="credentials_file=$Gcloudcreds" -var-file="terraform.tfvars"'
+            }
+        }
+
+        stage('Output') {
+            steps {
+                sh 'terraform output'
             }
         }
     }
