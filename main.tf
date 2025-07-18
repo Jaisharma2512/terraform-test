@@ -10,7 +10,7 @@ terraform {
 provider "google" {
   project = "secure-air-461520-g7"
   region  = "us-central1"
-  credentials = "credentials.json"
+  credentials = file(var.credentials_file)
 }
 
 variable "fw" {
